@@ -23,7 +23,7 @@ body { font-family: 'Archivo', sans-serif; background: var(--light); color: var(
 nav {
   background: var(--white);
   border-bottom: 3px solid var(--black);
-  padding: 0 32px;
+  padding: 0 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -87,10 +87,64 @@ nav {
   background: var(--orange);
   display: grid;
   grid-template-columns: 1fr auto;
-  min-height: 460px;
+  height: calc(100vh - 95px);
+  min-height: 500px;
   border-bottom: 3px solid var(--black);
   position: relative;
   overflow: hidden;
+}
+
+/* scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.scroll-hint-label {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+.scroll-hint-arrow {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounce 1.8s ease-in-out infinite;
+}
+.scroll-hint-arrow::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgba(255,255,255,0.9);
+  border-bottom: 2px solid rgba(255,255,255,0.9);
+  transform: rotate(45deg) translateY(-2px);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 .hero::before {
   content: '';
@@ -132,18 +186,18 @@ nav {
 }
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(72px, 11vw, 130px);
+  font-size: clamp(72px, 11vw, 180px);
   line-height: 0.88;
   letter-spacing: 0.02em;
   color: var(--white);
   text-shadow: 4px 4px 0 var(--black);
 }
-.hero-title .the { font-size: 0.45em; display: block; text-shadow: 2px 2px 0 var(--black); }
+.hero-title .the { font-size: 0.45em; display: block; text-shadow: 4px 4px 0 var(--black); }
 .hero-sub {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--white);
-  margin-top: 20px;
+  margin-top: 8px;
   max-width: 360px;
   line-height: 1.6;
   opacity: 0.9;
@@ -734,6 +788,8 @@ footer {
   /* HERO */
   .hero {
     grid-template-columns: 1fr;
+    height: auto;
+    min-height: 100svh;
   }
 
   .hero-cover {
@@ -885,19 +941,23 @@ footer {
         <div class="cover-card-btn" onclick="goTo('edicoes')">Ler agora →</div>
       </div>
     </div>
+    <div class="scroll-hint" onclick="document.getElementById('home-content').scrollIntoView({behavior:'smooth'})">
+      <span class="scroll-hint-label">Rolar</span>
+      <div class="scroll-hint-arrow"></div>
+    </div>
   </section>
 
-  <div class="ticker">
+  <div id="home-content" class="ticker reveal">
     <div class="ticker-inner">
       <span class="ticker-item">Cultura e Atualidades</span><span class="ticker-item">Publicações Quinzenais</span><span class="ticker-item">Opinião e Entrevistas</span><span class="ticker-item">The Moodboard 2026</span><span class="ticker-item">Jornalismo Jovem</span><span class="ticker-item">Cultura e Atualidades</span><span class="ticker-item">Publicações Quinzenais</span><span class="ticker-item">Opinião e Entrevistas</span><span class="ticker-item">The Moodboard 2026</span><span class="ticker-item">Jornalismo Jovem</span>
     </div>
   </div>
 
-  <div class="section-label">
-    <div class="sec-title">Edições Anteriores</div>
+  <div class="section-label reveal">
+    <div class="sec-title">Últimas Edições</div>
     <a class="sec-link" onclick="goTo('edicoes')">Ver arquivo completo →</a>
   </div>
-  <div class="editions-grid">
+  <div class="editions-grid reveal">
     <!-- <div class="ecard" onclick="goTo('edicoes')">
       <div class="ecard-top" style="background:var(--pink)"><span class="ecard-top-num">03</span><span class="ecard-top-text">Corpo<br>& Cidade</span></div>
       <div class="ecard-stripe" style="background:var(--orange)"></div>
@@ -930,7 +990,7 @@ footer {
     </div>
   </div>
 
-  <section class="manifesto">
+  <section class="manifesto reveal">
     <div class="manifesto-left">
       <div class="manifesto-tag">Quem somos</div>
       <div class="manifesto-title">O QUE É O <span>THE</span> <span>MOOD</span>BOARD?</div>
@@ -942,10 +1002,12 @@ footer {
     </div>
   </section>
 
-  <section class="subscribe">
+  <section class="subscribe reveal">
     <div class="sub-left">
       <div class="sub-eyebrow">Não perca nenhuma edição</div>
-      <div class="sub-title">PRÓXIMA<br>EDIÇÃO EM<br>X DIAS.</div>
+      <div class="sub-title"> PRÓXIMA<br>EDIÇÃO EM<br>
+        <span id="diasRestantes">--</span> DIAS.
+      </div>
     </div>
     <div class="sub-form">
       <input type="email" placeholder="seu@email.com">
@@ -1109,7 +1171,7 @@ footer {
       <div class="sobre-side-block">
         <div class="sobre-side-label">Contato</div>
         <div class="sobre-side-title">Fale com a gente</div>
-        <div class="sobre-side-text">themoodboard@email.com<br>@themoodboardnews no Instagram</div>
+        <div class="sobre-side-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a2d6cac7cfcdcdc6c0cdc3d0c6e2c7cfc3cbce8cc1cdcf">[email&#160;protected]</a><br>@themoodboardnews no Instagram</div>
       </div>
     </div>
   </div>
@@ -1244,6 +1306,49 @@ function goTo(page) {
   if (navEl) navEl.classList.add('nav-active');
   window.scrollTo(0, 0);
 }
+
+// Scroll reveal observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+
+function initReveal() {
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+initReveal();
+
+function updateDays() {
+  const now = new Date();
+
+  const nextEdition = new Date("2026-04-01");
+
+  const diff = nextEdition - now;
+
+  const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+  let texto;
+
+  if (days < 0) {
+    texto = "DISPONÍVEL";
+  } else if (days === 0) {
+    texto = "HOJE";
+  } else if (days === 1) {
+    texto = "1";
+  } else {
+    texto = days;
+  }
+
+  document.getElementById("diasRestantes").innerText = texto;
+}
+
+setInterval(updateDays, 1000 * 60 * 60);
+updateDays();
+
 </script>
 </body>
 </html>
