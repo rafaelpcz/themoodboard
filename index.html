@@ -599,6 +599,101 @@ footer {
   color: var(--orange);
 }
 
+/* ── LEITOR INLINE ANIMADO ── */
+.edition-row.active-card {
+  border-color: var(--orange);
+  box-shadow: 4px 4px 0 var(--orange);
+}
+.edition-row.active-card .edition-read { color: var(--pink); }
+
+.inline-reader {
+  grid-column: 1 / -1;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1),
+              opacity 0.35s ease;
+}
+.inline-reader.open {
+  max-height: 900px;
+  opacity: 1;
+}
+
+.inline-reader-inner {
+  border: 3px solid var(--black);
+  border-top: none;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-8px);
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.inline-reader.open .inline-reader-inner {
+  transform: translateY(0);
+}
+
+.inline-topbar {
+  background: var(--black);
+  border-bottom: 3px solid var(--orange);
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 56px;
+  z-index: 50;
+}
+.inline-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.2);
+  padding: 7px 14px;
+  transition: all .15s;
+  background: transparent;
+  flex-shrink: 0;
+}
+.inline-back:hover { background: var(--pink); border-color: var(--pink); }
+.inline-back-arrow { transition: transform .2s; }
+.inline-back:hover .inline-back-arrow { transform: translateX(-4px); }
+
+.inline-meta { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1; }
+.inline-num { font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: var(--orange); line-height: 1; flex-shrink: 0; }
+.inline-title { font-family: 'Archivo Black', sans-serif; font-size: 13px; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.inline-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 1px; }
+.inline-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.inline-btn {
+  padding: 7px 12px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  border: 2px solid rgba(255,255,255,0.22);
+  background: transparent; color: var(--white);
+  cursor: pointer; transition: all .15s;
+  text-decoration: none; display: inline-block; white-space: nowrap;
+}
+.inline-btn:hover { background: var(--orange); border-color: var(--orange); color: var(--white); }
+.inline-btn.primary { background: var(--orange); border-color: var(--orange); }
+.inline-btn.primary:hover { background: var(--pink); border-color: var(--pink); }
+
+.inline-frame {
+  width: 92%;
+  margin: 0 auto;
+  height: 780px;
+  background: #fff;
+  border-left: 2px solid rgba(255,255,255,0.08);
+  border-right: 2px solid rgba(255,255,255,0.08);
+}
+.inline-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+
 /* ══════════════════════════════════════
    SOBRE PAGE
 ══════════════════════════════════════ */
@@ -664,111 +759,6 @@ footer {
 .team-body { padding: 12px 10px; }
 .team-name { font-family: 'Archivo Black', sans-serif; font-size: 13px; }
 .team-role { font-size: 11px; color: #888; margin-top: 3px; }
-
-/* ══════════════════════════════════════
-   INSCREVER-SE PAGE
-══════════════════════════════════════ */
-.inscricao-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 500px;
-  border-bottom: 3px solid var(--black);
-}
-.inscricao-left {
-  background: var(--pink);
-  padding: 56px 48px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.inscricao-left::before {
-  content: '';
-  position: absolute;
-  width: 240px; height: 240px;
-  background: var(--orange);
-  border-radius: 50% 40% 60% 30% / 40% 60% 40% 60%;
-  bottom: -60px; right: -40px;
-  opacity: 0.5;
-}
-.inscricao-left-top { position: relative; z-index: 1; }
-.inscricao-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 12px; }
-.inscricao-title { font-family: 'Bebas Neue', sans-serif; font-size: 64px; line-height: 0.95; color: var(--white); text-shadow: 3px 3px 0 var(--black); }
-.inscricao-desc { font-size: 14px; color: rgba(255,255,255,0.85); margin-top: 20px; line-height: 1.7; max-width: 340px; }
-.inscricao-perks { position: relative; z-index: 1; margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
-.perk-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--white); font-weight: 500; }
-.perk-dot { width: 8px; height: 8px; background: var(--white); border-radius: 50%; flex-shrink: 0; }
-
-.inscricao-right { padding: 56px 48px; background: var(--white); border-left: 3px solid var(--black); }
-.form-title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 0.03em; margin-bottom: 28px; }
-.form-group { margin-bottom: 20px; }
-.form-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #888; display: block; margin-bottom: 8px; }
-.form-input {
-  width: 100%;
-  padding: 13px 16px;
-  font-family: 'Archivo', sans-serif;
-  font-size: 14px;
-  background: var(--light);
-  border: 2px solid var(--black);
-  color: var(--black);
-  outline: none;
-  transition: border-color .15s;
-}
-.form-input:focus { border-color: var(--orange); }
-.form-select {
-  width: 100%;
-  padding: 13px 16px;
-  font-family: 'Archivo', sans-serif;
-  font-size: 14px;
-  background: var(--light);
-  border: 2px solid var(--black);
-  color: var(--black);
-  outline: none;
-  appearance: none;
-  cursor: pointer;
-}
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.form-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; cursor: pointer; }
-.form-check input[type=checkbox] { width: 18px; height: 18px; border: 2px solid var(--black); background: var(--light); cursor: pointer; flex-shrink: 0; margin-top: 1px; accent-color: var(--orange); }
-.form-check-label { font-size: 13px; color: #555; line-height: 1.5; }
-.form-submit {
-  width: 100%;
-  padding: 16px;
-  background: var(--orange);
-  color: var(--white);
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 2.5px solid var(--black);
-  cursor: pointer;
-  transition: background .15s;
-  margin-top: 8px;
-}
-.form-submit:hover { background: var(--pink); }
-
-.inscricao-plans {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 3px solid var(--black);
-  border-bottom: 3px solid var(--black);
-}
-.plan-card { padding: 32px 28px; border-right: 2.5px solid var(--black); }
-.plan-card:last-child { border-right: none; }
-.plan-card.featured { background: var(--orange); }
-.plan-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); background: var(--black); display: inline-block; padding: 3px 10px; margin-bottom: 12px; }
-.plan-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 0.03em; }
-.plan-card.featured .plan-name { color: var(--white); }
-.plan-price { font-family: 'Archivo Black', sans-serif; font-size: 28px; margin: 8px 0; }
-.plan-card.featured .plan-price { color: var(--white); }
-.plan-desc { font-size: 12px; color: #666; line-height: 1.6; margin-bottom: 16px; }
-.plan-card.featured .plan-desc { color: rgba(255,255,255,0.8); }
-.plan-feature { font-size: 12px; color: #555; padding: 4px 0; display: flex; align-items: center; gap: 6px; }
-.plan-card.featured .plan-feature { color: rgba(255,255,255,0.9); }
-.plan-feature::before { content: '✓'; font-weight: 700; color: var(--orange); }
-.plan-card.featured .plan-feature::before { color: var(--white); }
 
 /* ─────────────────────────────
    MOBILE FIX (sem alterar design)
@@ -912,9 +902,9 @@ footer {
 <nav>
   <div class="nav-logo" onclick="goTo('home')">THE <span>MOODBOARD</span></div>
   <div class="nav-links">
+    <a id="nav-home" onclick="goTo('home')" class="nav-active">Home</a>
     <a id="nav-edicoes" onclick="goTo('edicoes')">Edições</a>
     <a id="nav-sobre" onclick="goTo('sobre')">Sobre</a>
-    <a id="nav-inscricao" class="nav-cta" onclick="goTo('inscricao')">Inscrever-se</a>
   </div>
 </nav>
 
@@ -928,16 +918,16 @@ footer {
       <h1 class="hero-title"><span class="the">THE</span>MOODBOARD</h1>
       <p class="hero-sub">Um jornal digital feito por jovens que acreditam no poder da palavra. Cultura, atualidades, opinião e entrevistas — com olhar crítico, autoral e criativo.</p>
       <div class="hero-cta">
-        <button class="btn-main" onclick="goTo('edicoes')">Ler última edição</button>
+        <button class="btn-main" onclick="irParaUltimaEdicao()">Ler última edição</button>
         <button class="btn-ghost" onclick="goTo('edicoes')">Ver todas as edições</button>
       </div>
     </div>
     <div class="hero-cover">
       <div class="cover-card">
         <div class="cover-card-tag">📰 Edição atual</div>
-        <div class="cover-card-num">X</div>
-        <div class="cover-card-title">EXEMPLO</div>
-        <div class="cover-card-desc">X matérias · ~X min de leitura · Mar 2026</div>
+        <div class="cover-card-num">01</div>
+        <div class="cover-card-title"></div>
+        <div class="cover-card-desc">5 matérias · ~20 min de leitura · 01 Abr 2026</div>
         <div class="cover-card-btn" onclick="goTo('edicoes')">Ler agora →</div>
       </div>
     </div>
@@ -982,9 +972,9 @@ footer {
       <div class="ecard-top" style="background:#1a1a1a"><span class="ecard-top-num">01</span><span class="ecard-top-text" style="color:var(--orange)">Primeira<br>Edição</span></div>
       <div class="ecard-stripe" style="background:var(--pink)"></div>
       <div class="ecard-body">
-        <div class="ecard-meta">Nº X · X 2026</div>
+        <div class="ecard-meta">Nº 1 · 01 Abr 2026</div>
         <div class="ecard-title">EXEMPLO</div>
-        <div class="ecard-excerpt">EXEMPLO</div>
+        <div class="ecard-excerpt">Conheça a primeira edição do jornal The MoodBoard!</div>
         <span class="ecard-tag" style="color:var(--black);border-color:var(--black)">Manifesto</span>
       </div>
     </div>
@@ -1006,21 +996,17 @@ footer {
     <div class="sub-left">
       <div class="sub-eyebrow">Não perca nenhuma edição</div>
       <div class="sub-title"> PRÓXIMA<br>EDIÇÃO EM<br>
-        <span id="diasRestantes">--</span> DIAS.
+        <span id="diasRestantesHome">--</span> DIAS.
       </div>
-    </div>
-    <div class="sub-form">
-      <input type="email" placeholder="seu@email.com">
-      <button onclick="goTo('inscricao')">Inscrever-se →</button>
     </div>
   </section>
 
   <footer>
     <div class="footer-logo" onclick="goTo('home')">THE <span>MOODBOARD</span></div>
     <div class="footer-links">
+      <a onclick="goTo('home')">Home</a>      
       <a onclick="goTo('edicoes')">Edições</a>
       <a onclick="goTo('sobre')">Sobre</a>
-      <a onclick="goTo('inscricao')">Inscrever-se</a>
     </div>
     <div class="footer-copy">© 2026 · Publicação quinzenal independente</div>
   </footer>
@@ -1030,11 +1016,12 @@ footer {
      EDIÇÕES
 ══════════════════════════════════════ -->
 <div id="page-edicoes" class="page">
+
   <div class="page-header">
     <div class="page-header-inner">
       <div class="page-eyebrow">📰 Arquivo completo</div>
       <div class="page-title">EDIÇÕES</div>
-      <div class="page-desc">Todas as edições do The Moodboard, do mais recente ao primeiro número. Cada edição é uma nova composição de vozes, perspectivas e sentimentos.</div>
+      <div class="page-desc">Todas as edições do The Moodboard, do mais recente ao primeiro número. Clique em uma edição para ler direto aqui.</div>
     </div>
   </div>
 
@@ -1044,95 +1031,69 @@ footer {
     </div>
   </div>
 
-  <div class="editions-page-grid">
-    
-    <!-- <div class="edition-row">
-      <div class="edition-row-visual" style="background:var(--orange)">
-        <span class="edition-row-ghost">04</span>
-        <div class="edition-row-num">04</div>
-        <div class="edition-row-label">Mais recente</div>
-      </div>
-      <div class="edition-row-body">
-        <div class="edition-row-date">Março 2026 · 6 textos · ~40 min</div>
-        <div class="edition-row-title">Ruído Branco: a crise da atenção</div>
-        <div class="edition-row-excerpt">Vivemos num mundo projetado para nos distrair. Nesta edição, exploramos por que está cada vez mais difícil se concentrar.</div>
-        <div class="edition-row-footer">
-          <span class="edition-row-tag" style="color:var(--orange);border-color:var(--orange)">Atualidades</span>
-          <span class="edition-read">Ler edição →</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="edition-row">
+  <div class="editions-page-grid" id="edicoesGrid">
+
+    <!-- ✅ EDIÇÃO EXEMPLO                                                      -->
+    <!-- Para adicionar novas edições, copie o bloco .edition-row e edite os dados -->
+    <!-- Substitua ID_DO_DRIVE pelo ID real do arquivo no Google Drive          -->
+    <div id="edicao-1" class="edition-row" onclick="abrirEdicao(this,'ID_DO_DRIVE','X','EXEMPLO','Mar 2026 · X textos · ~X min')">
       <div class="edition-row-visual" style="background:var(--pink)">
-        <span class="edition-row-ghost">03</span>
-        <div class="edition-row-num">03</div>
-        <div class="edition-row-label">Fev 2026</div>
+        <span class="edition-row-ghost">1</span>
+        <div class="edition-row-num">01</div>
+        <div class="edition-row-label">Primeira edição</div>
       </div>
       <div class="edition-row-body">
-        <div class="edition-row-date">Fevereiro 2026 · 5 textos · ~35 min</div>
-        <div class="edition-row-title">Corpo & Cidade: espaço molda identidade</div>
-        <div class="edition-row-excerpt">Uma jornada pelos lugares que habitamos e como eles nos transformam silenciosamente ao longo do tempo.</div>
-        <div class="edition-row-footer">
-          <span class="edition-row-tag" style="color:var(--pink);border-color:var(--pink)">Cultura</span>
-          <span class="edition-read">Ler edição →</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="edition-row">
-      <div class="edition-row-visual" style="background:#1a1a1a">
-        <span class="edition-row-ghost">02</span>
-        <div class="edition-row-num" style="color:var(--orange)">02</div>
-        <div class="edition-row-label" style="color:rgba(255,255,255,0.6)">Jan 2026</div>
-      </div>
-      <div class="edition-row-body">
-        <div class="edition-row-date">Janeiro 2026 · 6 textos · ~38 min</div>
-        <div class="edition-row-title">Nostalgia Futura: saudade do que não aconteceu</div>
-        <div class="edition-row-excerpt">Sobre o estranho fenômeno de sentir falta de um tempo que nunca existiu de verdade.</div>
-        <div class="edition-row-footer">
-          <span class="edition-row-tag" style="color:var(--black);border-color:var(--black)">Opinião</span>
-          <span class="edition-read">Ler edição →</span>
-        </div>
-      </div>
-    </div> -->
-    <!-- Ed 01 -->
-    <div class="edition-row">
-      <div class="edition-row-visual" style="background:var(--pink)">
-        <span class="edition-row-ghost">X</span>
-        <div class="edition-row-num">X</div>
-        <div class="edition-row-label">EXEMPLO</div>
-      </div>
-      <div class="edition-row-body">
-        <div class="edition-row-date">Mar 2026 · X textos · ~X min</div>
+        <div class="edition-row-date">Abril 2026 · 5 matérias · ~20 min</div>
         <div class="edition-row-title">EXEMPLO</div>
-        <div class="edition-row-excerpt">EXEMPLO</div>
+        <div class="edition-row-excerpt">Conheça a primeira edição do The MoodBoard!</div>
         <div class="edition-row-footer">
           <span class="edition-row-tag" style="color:var(--pink);border-color:var(--pink)">Manifesto</span>
           <span class="edition-read">Ler edição →</span>
         </div>
       </div>
     </div>
+
+    <!-- LEITOR INLINE — não remova este bloco -->
+    <div class="inline-reader" id="inlineReader">
+      <div class="inline-reader-inner">
+        <div class="inline-topbar">
+          <button class="inline-back" onclick="fecharLeitor()">
+            <span class="inline-back-arrow">←</span> Voltar
+          </button>
+          <div class="inline-meta">
+            <div class="inline-num" id="inlineNum">01</div>
+            <div>
+              <div class="inline-title" id="inlineTitle">Título</div>
+              <div class="inline-sub" id="inlineSub">Mês 2026</div>
+            </div>
+          </div>
+          <div class="inline-actions">
+            <a class="inline-btn primary" id="inlineDownload" href="#" target="_blank">⬇ Baixar PDF</a>
+            <a class="inline-btn" id="inlineDrive" href="#" target="_blank">↗ Drive</a>
+          </div>
+        </div>
+        <div class="inline-frame">
+          <iframe id="inlineIframe" src="" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <section class="subscribe">
     <div class="sub-left">
-      <div class="sub-eyebrow">Não perca a próxima edição</div>
-      <div class="sub-title">NOVA EDIÇÃO<br>EM X DIAS.</div>
-    </div>
-    <div class="sub-form">
-      <input type="email" placeholder="seu@email.com">
-      <button onclick="goTo('inscricao')">Inscrever-se →</button>
+      <div class="sub-eyebrow">Não perca nenhuma edição</div>
+      <div class="sub-title"> PRÓXIMA<br>EDIÇÃO EM<br>
+        <span id="diasRestantesEdicoes">--</span> DIAS.
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="footer-logo" onclick="goTo('home')">THE <span>MOODBOARD</span></div>
-    <div class="footer-links">
-      <a onclick="goTo('edicoes')">Edições</a><a onclick="goTo('sobre')">Sobre</a><a onclick="goTo('inscricao')">Inscrever-se</a>
-    </div>
     <div class="footer-copy">© 2026 · Publicação quinzenal independente</div>
   </footer>
+
 </div>
 
 <!-- ══════════════════════════════════════
@@ -1171,7 +1132,7 @@ footer {
       <div class="sobre-side-block">
         <div class="sobre-side-label">Contato</div>
         <div class="sobre-side-title">Fale com a gente</div>
-        <div class="sobre-side-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a2d6cac7cfcdcdc6c0cdc3d0c6e2c7cfc3cbce8cc1cdcf">[email&#160;protected]</a><br>@themoodboardnews no Instagram</div>
+        <div class="sobre-side-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a2d6cac7cfcdcdc6c0cdc3d0c6e2c7cfc3cbce8cc1cdcf">themoodboard10@gmail.com</a><br>@themoodboardnews no Instagram</div>
       </div>
     </div>
   </div>
@@ -1232,79 +1193,72 @@ footer {
 
   <footer>
     <div class="footer-logo" onclick="goTo('home')">THE <span>MOODBOARD</span></div>
-    <div class="footer-links">
-      <a onclick="goTo('edicoes')">Edições</a><a onclick="goTo('sobre')">Sobre</a><a onclick="goTo('inscricao')">Inscrever-se</a>
-    </div>
-    <div class="footer-copy">© 2026 · Publicação quinzenal independente</div>
-  </footer>
-</div>
-
-<!-- ══════════════════════════════════════
-     INSCREVER-SE
-══════════════════════════════════════ -->
-<div id="page-inscricao" class="page">
-  <div class="page-header">
-    <div class="page-header-inner">
-      <div class="page-eyebrow">✉️ Fique por dentro</div>
-      <div class="page-title">INSCREVER-SE</div>
-      <div class="page-desc">Receba cada nova edição diretamente no seu e-mail. Gratuito, quinzenal e sem spam — só bom conteúdo.</div>
-    </div>
-  </div>
-
-  <div class="inscricao-wrap">
-    <div class="inscricao-left">
-      <div class="inscricao-left-top">
-        <div class="inscricao-eyebrow">Por que se inscrever?</div>
-        <div class="inscricao-title">FIQUE<br>POR<br>DENTRO.</div>
-        <div class="inscricao-desc">Cada edição do The Moodboard chega no seu e-mail antes de todo mundo. Quinzenal, gratuita e feita com muito cuidado.</div>
-      </div>
-      <div class="inscricao-perks">
-        <div class="perk-item"><div class="perk-dot"></div>Nova edição a cada 15 dias</div>
-        <div class="perk-item"><div class="perk-dot"></div>Acesso antecipado aos textos</div>
-        <div class="perk-item"><div class="perk-dot"></div>100% gratuito, sem spam</div>
-      </div>
-    </div>
-    <div class="inscricao-right">
-      <div class="form-title">INSCREVA-SE</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Nome</label>
-          <input class="form-input" type="text" placeholder="Seu nome">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Sobrenome</label>
-          <input class="form-input" type="text" placeholder="Seu sobrenome">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">E-mail</label>
-        <input class="form-input" type="email" placeholder="seu@email.com">
-      </div>
-      <div class="form-check">
-        <input type="checkbox" id="aceito">
-        <label class="form-check-label" for="aceito">Aceito receber comunicações do The Moodboard e entendo que posso cancelar a qualquer momento.</label>
-      </div>
-      <button class="form-submit">Quero me inscrever →</button>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-logo" onclick="goTo('home')">THE <span>MOODBOARD</span></div>
-    <div class="footer-links">
-      <a onclick="goTo('edicoes')">Edições</a><a onclick="goTo('sobre')">Sobre</a><a onclick="goTo('inscricao')">Inscrever-se</a>
-    </div>
     <div class="footer-copy">© 2026 · Publicação quinzenal independente</div>
   </footer>
 </div>
 
 <script>
 function goTo(page) {
+  fecharLeitor();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('nav-active'));
   const navEl = document.getElementById('nav-' + page);
   if (navEl) navEl.classList.add('nav-active');
   window.scrollTo(0, 0);
+}
+
+function abrirEdicao(cardEl, driveId, num, titulo, meta) {
+  const reader = document.getElementById('inlineReader');
+  const grid   = document.getElementById('edicoesGrid');
+
+  document.querySelectorAll('.edition-row').forEach(r => r.classList.remove('active-card'));
+
+  const jaAberto = reader.classList.contains('open');
+  const mesmoCarta = cardEl.dataset.ativo === 'true';
+
+  if (jaAberto && mesmoCarta) {
+    fecharLeitor();
+    return;
+  }
+
+  document.querySelectorAll('.edition-row').forEach(r => r.dataset.ativo = 'false');
+  cardEl.dataset.ativo = 'true';
+  cardEl.classList.add('active-card');
+
+  document.getElementById('inlineNum').textContent   = num;
+  document.getElementById('inlineTitle').textContent = titulo;
+  document.getElementById('inlineSub').textContent   = meta;
+  document.getElementById('inlineDownload').href = 'https://drive.google.com/uc?export=download&id=' + driveId;
+  document.getElementById('inlineDrive').href    = 'https://drive.google.com/file/d/' + driveId + '/view';
+  document.getElementById('inlineIframe').src    = 'https://drive.google.com/file/d/' + driveId + '/preview';
+
+  grid.appendChild(reader);
+
+  if (!jaAberto) {
+    requestAnimationFrame(() => {
+      reader.classList.add('open');
+      setTimeout(() => {
+        reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    });
+  } else {
+    reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function fecharLeitor() {
+  const reader = document.getElementById('inlineReader');
+  if (!reader) return;
+  reader.classList.remove('open');
+  document.querySelectorAll('.edition-row').forEach(r => {
+    r.classList.remove('active-card');
+    r.dataset.ativo = 'false';
+  });
+  setTimeout(() => {
+    const iframe = document.getElementById('inlineIframe');
+    if (iframe) iframe.src = '';
+  }, 400);
 }
 
 // Scroll reveal observer
@@ -1343,11 +1297,26 @@ function updateDays() {
     texto = days;
   }
 
-  document.getElementById("diasRestantes").innerText = texto;
+  const home = document.getElementById("diasRestantesHome");
+  const edicoes = document.getElementById("diasRestantesEdicoes");
+
+  if (home) home.innerText = texto;
+  if (edicoes) edicoes.innerText = texto;
 }
 
 setInterval(updateDays, 1000 * 60 * 60);
 updateDays();
+
+function irParaUltimaEdicao() {
+  goTo('edicoes');
+
+  setTimeout(() => {
+    const card = document.getElementById('edicao-1');
+    if (card) {
+      card.click();
+    }
+  }, 100);
+}
 
 </script>
 </body>
