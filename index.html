@@ -33,12 +33,9 @@ nav {
   z-index: 200;
 }
 .nav-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 26px;
-  letter-spacing: 0.06em;
-  color: var(--orange);
+  display: block;
+  height: 120px;
   cursor: pointer;
-  line-height: 1;
 }
 .nav-logo span { color: var(--pink); }
 .nav-links { display: flex; gap: 0; }
@@ -474,12 +471,16 @@ nav {
 footer {
   background: var(--black);
   color: var(--white);
-  padding: 32px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.06em; color: var(--orange); cursor: pointer; }
+.footer-logo { 
+  display: block;
+  height: 120px; 
+  cursor: pointer; 
+}
 .footer-logo span { color: var(--pink); }
 .footer-links { display: flex; gap: 24px; }
 .footer-links a { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; cursor: pointer; transition: color .15s; }
@@ -757,6 +758,12 @@ footer {
   overflow: hidden;
   text-align: center;
 }
+.team-card:nth-last-child(2) {
+  grid-column: 2;
+}
+.team-card:nth-last-child(1) {
+  grid-column: 3;
+}
 .team-avatar {
   height: 90px;
   display: flex;
@@ -911,7 +918,7 @@ footer {
  
 <!-- ── NAV ── -->
 <nav>
-  <div class="nav-logo" onclick="goTo('home')">THE <span>MOODBOARD</span></div>
+  <img class="nav-logo" src="themoodboardlogo.png" onclick="goTo('home')" alt="The MoodBoard" style="height: 120px; cursor: pointer;" />
   <div class="nav-links">
     <a id="nav-home" onclick="goTo('home')" class="nav-active">Home</a>
     <a id="nav-edicoes" onclick="goTo('edicoes')">Edições</a>
@@ -1013,7 +1020,7 @@ footer {
   </section>
  
   <footer>
-    <div class="footer-logo" onclick="goTo('home')">THE <span>MOODBOARD</span></div>
+    <img class="footer-logo" src="themoodboardlogo.png" onclick="goTo('home')" alt="The MoodBoard" style="height: 120px; cursor: pointer;" />
     <div class="footer-links">
       <a onclick="goTo('home')">Home</a>      
       <a onclick="goTo('edicoes')">Edições</a>
@@ -1053,7 +1060,7 @@ footer {
     <!--    b) URL DIRETA: abrirEdicao(this,'https://seusite.com/arquivo.pdf'...)-->
     <!-- 4. Atualize: número (01), título, e metadados (data, textos, tempo)      -->
     <!-- 5. Mude a cor de fundo: var(--pink), var(--orange), ou var(--black)      -->
-    <div id="edicao-1" class="edition-row" onclick="abrirEdicao(this,'1nqcHDgXPIYpH7v-3ulz9vVBANtqkCiq4','01','Luzes apagadas para 2026!','Abril 2026 · 5 matérias · ~20 min')">
+    <div id="edicao-1" class="edition-row" onclick="abrirEdicao(this,'1B2NbRZaBzS_0JeD_Qnt75r1ZOObKvVZx','01','Luzes apagadas para 2026!','Abril 2026 · 5 matérias · ~20 min')">
       <div class="edition-row-visual" style="background:var(--pink)">
         <span class="edition-row-ghost">1</span>
         <div class="edition-row-num">01</div>
@@ -1107,12 +1114,12 @@ footer {
   </section>
  
   <footer>
-    <div class="footer-logo" onclick="goTo('home')">THE <span>MOODBOARD</span></div>
+    <img class="footer-logo" src="themoodboardlogo.png" onclick="goTo('home')" alt="The MoodBoard" style="height: 120px; cursor: pointer;" />
     <div class="footer-copy">© 2026 · Publicação quinzenal independente</div>
   </footer>
  
 </div>
- 
+
 <!-- ══════════════════════════════════════
      SOBRE
 ══════════════════════════════════════ -->
@@ -1149,7 +1156,7 @@ footer {
       <div class="sobre-side-block">
         <div class="sobre-side-label">Contato</div>
         <div class="sobre-side-title">Fale com a gente</div>
-        <div class="sobre-side-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a2d6cac7cfcdcdc6c0cdc3d0c6e2c7cfc3cbce8cc1cdcf"><span class="__cf_email__" data-cfemail="5f2b373a3230303b3d303e2d3b6e6f1f38323e3633713c3032">[email&#160;protected]</span></a><br>@themoodboardnews no Instagram</div>
+        <div class="sobre-side-text">@themoodboardnews no Instagram</div>
       </div>
     </div>
   </div>
@@ -1178,30 +1185,128 @@ footer {
     </div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-avatar" style="background:var(--orange)">EX</div>
+        <div class="team-avatar" style="background:var(--orange)">LI</div>
         <div class="team-body">
-          <div class="team-name">EXEMPLO</div>
-          <div class="team-role">Editora-chefe</div>
+          <div class="team-name">LÍVIA</div>
+          <div class="team-role">Fundadora</div>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar" style="background:var(--pink)">EX</div>
+        <div class="team-avatar" style="background:var(--pink)">AL</div>
         <div class="team-body">
-          <div class="team-name">EXEMPLO</div>
-          <div class="team-role">Design & Visual</div>
+          <div class="team-name">ANA LUÍSA</div>
+          <div class="team-role">Fundadora</div>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar" style="background:var(--black)">EX</div>
+        <div class="team-avatar" style="background:var(--black)">CL</div>
         <div class="team-body">
-          <div class="team-name">EXEMPLO</div>
+          <div class="team-name">CLARISSA</div>
+          <div class="team-role">Administradora</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--orange)">ID</div>
+        <div class="team-body">
+          <div class="team-name">ISA DOURADO</div>
+          <div class="team-role">Administradora</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--pink)">BI</div>
+        <div class="team-body">
+          <div class="team-name">BIA</div>
           <div class="team-role">Redatora</div>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar" style="background:var(--orange)">EX</div>
+        <div class="team-avatar" style="background:var(--black)">ED</div>
         <div class="team-body">
-          <div class="team-name">EXEMPLO</div>
+          <div class="team-name">EDUARDA</div>
+          <div class="team-role">Redatora</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--orange)">YA</div>
+        <div class="team-body">
+          <div class="team-name">YASMIN</div>
+          <div class="team-role">Redatora</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--pink)">AL</div>
+        <div class="team-body">
+          <div class="team-name">ANA LUIZA</div>
+          <div class="team-role">Redatora</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--black)">MA</div>
+        <div class="team-body">
+          <div class="team-name">MALU</div>
+          <div class="team-role">Redatora</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--orange)">DA</div>
+        <div class="team-body">
+          <div class="team-name">DAVI</div>
+          <div class="team-role">Redator</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--pink)">MA</div>
+        <div class="team-body">
+          <div class="team-name">MARCELLE</div>
+          <div class="team-role">Redatora</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--black)">LU</div>
+        <div class="team-body">
+          <div class="team-name">LUCAS</div>
+          <div class="team-role">Pesquisador</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--orange)">SO</div>
+        <div class="team-body">
+          <div class="team-name">SOPHIA</div>
+          <div class="team-role">Pesquisadora</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--pink)">BE</div>
+        <div class="team-body">
+          <div class="team-name">BECA</div>
+          <div class="team-role">Pesquisadora</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--black)">SO</div>
+        <div class="team-body">
+          <div class="team-name">SOPHIA</div>
+          <div class="team-role">Redes Sociais</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--orange)">ES</div>
+        <div class="team-body">
+          <div class="team-name">ESTER</div>
+          <div class="team-role">Redes Sociais</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--pink)">LA</div>
+        <div class="team-body">
+          <div class="team-name">LAURA</div>
+          <div class="team-role">Redes Sociais</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--black)">RC</div>
+        <div class="team-body">
+          <div class="team-name">RAFAEL COSTA</div>
           <div class="team-role">Redes Sociais</div>
         </div>
       </div>
@@ -1209,7 +1314,7 @@ footer {
   </div>
  
   <footer>
-    <div class="footer-logo" onclick="goTo('home')">THE <span>MOODBOARD</span></div>
+    <img class="footer-logo" src="themoodboardlogo.png" onclick="goTo('home')" alt="The MoodBoard" style="height: 120px; cursor: pointer;" />
     <div class="footer-copy">© 2026 · Publicação quinzenal independente</div>
   </footer>
 </div>
@@ -1323,7 +1428,7 @@ initReveal();
 function updateDays() {
   const now = new Date();
  
-  const nextEdition = new Date("UNDEFINIED"); 
+  const nextEdition = new Date("04/17/2026");
  
   const diff = nextEdition - now;
  
@@ -1350,6 +1455,10 @@ function updateDays() {
  
 setInterval(updateDays, 1000 * 60 * 60);
 updateDays();
+
+function irParaUltimaEdicao() {
+  goTo('edicoes');
+}
  
 </script>
 </body>
